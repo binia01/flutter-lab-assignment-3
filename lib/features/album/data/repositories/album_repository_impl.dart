@@ -28,8 +28,12 @@ class AlbumRepositoryImpl implements AlbumRepository {
                   ),
             );
             return AlbumWithPhoto(
+              albumId: matchingPhoto.albumId,
               id: album.id,
               title: album.title,
+              photoId: matchingPhoto.id,
+              photoTitle: matchingPhoto.title,
+              url: matchingPhoto.url,
               thumbnailUrl: matchingPhoto.thumbnailUrl,
             );
           }).toList();
