@@ -3,8 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:music_app/features/album/data/models/album/album_model.dart';
 import 'package:music_app/features/album/data/models/photo/photo_model.dart';
 import 'package:music_app/features/album/data/repositories/album_repository_impl.dart';
-// import 'package:music_app/features/album/domain/entities/album_with_photos/album_with_photos.dart';
-// import 'package:music_app/features/album/domain/usecases/fetch_album_with_photo.dart';
 
 part 'album_event.dart';
 part 'album_state.dart';
