@@ -24,6 +24,36 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: appRouter);
+    return MaterialApp.router(
+      routerConfig: appRouter,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.indigo.shade600,
+          brightness: Brightness.light,
+        ),
+        scaffoldBackgroundColor: Colors.grey[50],
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.indigo.shade600,
+          foregroundColor: Colors.white,
+          elevation: 2,
+          titleTextStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        listTileTheme: ListTileThemeData(
+          iconColor: Colors.indigo,
+          textColor: Colors.black87,
+        ),
+        iconTheme: const IconThemeData(color: Colors.indigo),
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          bodyMedium: TextStyle(fontSize: 16),
+        ),
+      ),
+    );
   }
 }
