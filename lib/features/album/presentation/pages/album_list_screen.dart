@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:music_app/features/album/data/models/photo/photo_model.dart';
 import 'package:music_app/features/album/presentation/bloc/album_bloc.dart';
 
 class AlbumListScreen extends StatefulWidget {
@@ -25,13 +26,26 @@ class _AlbumListScreenState extends State<AlbumListScreen> {
             return Center(child: CircularProgressIndicator());
           } else if (state is AlbumLoaded) {
             final albums = state.albums;
+            final photos = state.photos;
             return ListView.builder(
               itemCount: albums.length,
               itemBuilder: (context, index) {
                 final album = albums[index];
                 return ListTile(
                   leading: Image.network(
-                    album.thumbnailUrl,
+                    photos
+                        .firstWhere(
+                          (p) => p.albumId == album.id,
+                          orElse:
+                              () => PhotoModel(
+                                albumId: album.id,
+                                id: 0,
+                                title: '',
+                                url: '',
+                                thumbnailUrl: '',
+                              ),
+                        )
+                        .thumbnailUrl,
                     width: 50,
                     height: 50,
                     fit: BoxFit.cover,
@@ -46,7 +60,10 @@ class _AlbumListScreenState extends State<AlbumListScreen> {
                   ),
                   subtitle: Text('Tap for details'),
                   onTap: () {
-                    context.pushNamed('albumDetail', extra: album);
+                    context.pushNamed(
+                      'albumDetail',
+                      extra: {"album": album, "photos": photos},
+                    );
                   },
                 );
               },

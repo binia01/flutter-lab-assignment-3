@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:music_app/features/album/domain/entities/album_with_photos/album_with_photos.dart';
+import 'package:music_app/features/album/data/models/album/album_model.dart';
+import 'package:music_app/features/album/data/models/photo/photo_model.dart';
 import 'package:music_app/features/album/presentation/pages/album_detail_screen.dart';
 import 'package:music_app/features/album/presentation/pages/album_list_screen.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/albums',
   debugLogDiagnostics: true,
   routes: [
     GoRoute(
-      path: '/',
+      path: '/albums',
       name: 'albumList',
       builder: (BuildContext context, GoRouterState state) {
         return AlbumListScreen();
@@ -19,8 +20,10 @@ final GoRouter appRouter = GoRouter(
       path: '/detail',
       name: 'albumDetail',
       builder: (BuildContext context, GoRouterState state) {
-        final album = state.extra as AlbumWithPhoto;
-        return AlbumDetailScreen(album: album);
+        final extras = state.extra as Map<String, dynamic>;
+        final album = extras['album'] as AlbumModel;
+        final photos = extras['photos'] as List<PhotoModel>;
+        return AlbumDetailScreen(album: album, photos: photos);
       },
     ),
   ],
