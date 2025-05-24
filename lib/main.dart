@@ -4,6 +4,8 @@ import 'package:music_app/core/network/api_request.dart';
 import 'package:http/http.dart' as http;
 import 'package:music_app/features/album/data/datasources/album_remote_datasource_impl.dart';
 import 'package:music_app/features/album/data/repositories/album_repository_impl.dart';
+import 'package:music_app/features/album/domain/usecases/fetch_album_usecase.dart';
+import 'package:music_app/features/album/domain/usecases/fetch_photo_usecase.dart';
 import 'package:music_app/features/album/presentation/bloc/album_bloc.dart';
 import 'package:music_app/routes/go_router.dart';
 
@@ -11,9 +13,12 @@ void main() {
   final apiService = ApiService(http.Client());
   final remoteDataSource = AlbumRemoteDatasourceImpl(apiService: apiService);
   final repository = AlbumRepositoryImpl(datasource: remoteDataSource);
+  final fetchAlbums = FetchAlbumsUseCase(repository);
+  final fetchPhotos = FetchPhotosUseCase(repository);
   runApp(
     BlocProvider(
-      create: (_) => AlbumBloc(repository: repository),
+      create:
+          (_) => AlbumBloc(fetchAlbums: fetchAlbums, fetchPhotos: fetchPhotos),
       child: MyApp(),
     ),
   );

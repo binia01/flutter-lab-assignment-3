@@ -12,8 +12,8 @@ class AlbumInitial extends AlbumState {}
 class AlbumLoading extends AlbumState {}
 
 class AlbumLoaded extends AlbumState {
-  final List<AlbumModel> albums;
-  final List<PhotoModel> photos;
+  final List<AlbumEntity> albums;
+  final List<PhotoEntity> photos;
   const AlbumLoaded({required this.albums, required this.photos});
 
   @override

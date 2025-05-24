@@ -1,4 +1,4 @@
-import 'package:music_app/features/album/domain/entities/album/album.dart';
+import 'package:music_app/features/album/domain/entities/album/album_entity.dart';
 
 class AlbumModel {
   int userId;
@@ -21,7 +21,7 @@ class AlbumModel {
 }
 
 extension AlbumModelX on AlbumModel {
-  Album toEntity() {
-    return Album(userId: userId, id: id, title: title);
+  AlbumEntity toEntity() {
+    return AlbumEntity(userId: userId, id: id, title: title);
   }
 }

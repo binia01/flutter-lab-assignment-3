@@ -1,4 +1,4 @@
-import 'package:music_app/features/album/domain/entities/photo/photo.dart';
+import 'package:music_app/features/album/domain/entities/photo/photo_entity.dart';
 
 class PhotoModel {
   final int albumId;
@@ -37,8 +37,8 @@ class PhotoModel {
 }
 
 extension PhotoModelX on PhotoModel {
-  Photo toEntity() {
-    return Photo(
+  PhotoEntity toEntity() {
+    return PhotoEntity(
       albumId: albumId,
       id: id,
       title: title,
